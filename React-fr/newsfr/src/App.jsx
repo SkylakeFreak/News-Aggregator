@@ -15,6 +15,7 @@ function App() {
   const [userauth,setuseauth]=useState(true);
   const [currentuser,setcurrentuser]=useState("");
   const [currentemail,setcurrentemail]=useState("");
+  console.log(currentemail);
 
   return (
     <BrowserRouter>
@@ -24,7 +25,7 @@ function App() {
       <Route path="/Signup" element={<Signup/>}/>
       <Route element={<PrivateRoute userauth={userauth}/>}>
       <Route path='/Content' element={<Content currentuser={currentuser}/>}/>
-      <Route path='/NewsData' currentemail={currentemail} element={<Newsdata/>}/>
+      <Route path='/NewsData' element={<Newsdata  currentemail={currentemail}/>}/>
 
       </Route>
     </Routes>

@@ -4,14 +4,15 @@ import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 
-export default function Newsdata({currentemail}) {
+function Newsdata({currentemail}) {
   const [Dept,setDept]=useState("Not Selected");
   const route=useNavigate();
   const group=Dept
   const date = new Date().toLocaleString();
 
   const Approved=false;
-  const Owner="Utkarsh";
+  console.log(currentemail,"currentemail")
+  const Owner=currentemail
   const Like=0;
   const Reported=0;
   const [Title,settitle]=useState("")
@@ -99,3 +100,5 @@ export default function Newsdata({currentemail}) {
     </div>
   );
 }
+
+export default Newsdata
