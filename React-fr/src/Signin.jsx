@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import './style.scss';
+
 
 function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
   let history = useNavigate();
@@ -54,51 +56,51 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
     }
   };
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center">
+    <div id="Signin">
       <Toaster position="bottom-right" reverseOrder={false} />
-      <nav>SIGNIN</nav>
-      <div className="h-screen w-screen flex items-center justify-center">
+      <div className="signin-content">
+        <h1 className="">SIGN IN</h1>
         <form onSubmit={formsubmit} action="">
-          <div className="flex flex-col outline outline-1">
-            <h1 className="text-center">SIGN IN</h1>
+          <label>Email
             <input
               onChange={(e) => {
                 setemail(e.target.value);
               }}
               placeholder="Email"
-              className="bg-gray-200 text-center mb-2"
+              className=""
               type="text"
             />
+          </label>
+          <label>Username
             <input
               onChange={(e) => {
                 setusername(e.target.value);
               }}
               placeholder="Username"
-              className="bg-gray-200 text-center mb-2"
+              className=""
               type="text"
             />
+          </label>
+          <label>Password
             <input
               onChange={(e) => {
                 setpassword(e.target.value);
               }}
               placeholder="Password"
-              className="bg-gray-200 text-center"
+              className=""
               type="password"
             />
-            <button className="bg-gray-500 text-white rounded-sm ml-1 mr-1 mb-1 mt-2 hover:bg-black">
-              SEND
-            </button>
-          </div>
-          <div className="text-center mt-4 text-sm outline outline-1">
-            <p>Don't Have An Account?</p>
-            <p
-              onClick={Signup}
-              className="text-red-500 hover:text-black cursor-pointer"
-            >
-              SIGNUP
-            </p>
-          </div>
+          </label>
+          <button className="">
+            Sign in
+          </button>
         </form>
+        <div className="registration">
+          <p onClick={Signup} className="">SIGNUP</p>
+        </div>
+      </div>
+      <div className="img-container">
+        <img src='https://i.pinimg.com/originals/48/5d/2f/485d2f9046e9042762da35b2e8f22b87.gif'/>
       </div>
     </div>
   );

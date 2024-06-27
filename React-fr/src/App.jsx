@@ -7,6 +7,8 @@ import Signin from './Signin';
 import Signup from './Signup';
 import Content from './Content';
 import Newsdata from './Newsdata';
+import Header from './Header';
+import Footer from './Footer';
 
 import './App.css';
 import { useState } from 'react';
@@ -18,6 +20,8 @@ function App() {
   console.log(currentemail);
 
   return (
+    <div className='App'>
+    <Header/>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Front/>}/>
@@ -30,6 +34,8 @@ function App() {
       </Route>
     </Routes>
     </BrowserRouter>
+    <Footer/>
+    </div>
   );
 }
 
