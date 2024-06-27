@@ -11,8 +11,6 @@ function Front() {
     <div id='me' className='h-screen w-screen flex flex-col'>
     <div className='flex justify-center items-center'><p onClick={Loginclick} className='cursor-pointer'>SIGN-IN</p></div>
     <div className='h-full flex items-center justify-center w-full'>
-    <p className='text-3xl animate-pulse'>NEWS APP</p>
-
     </div>
     
   </div>
