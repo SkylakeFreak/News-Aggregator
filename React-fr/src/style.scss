@@ -16,13 +16,26 @@
     --generalPadding:1.2em;
 }
 @mixin headings{
-    font-family: var(--font1);
-    font-weight: 800;
-    color: var(--red);
-    font-size: clamp(2.7rem,4vw,6rem);
+    h1{
+        font-family: var(--font1);
+        font-weight: 800;
+        color: var(--red);
+        font-size: clamp(2.7rem,4vw,6rem);
+    }
     
 }
 @mixin forms{
+    display: flex;
+    margin: 3% auto;
+    justify-content: space-between;
+    gap: var(--generalPadding);
+    height: fit-content;
+    .content{
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+        width: 100%;
+    }
     form{
         display: flex;
         flex-direction: column;
@@ -46,6 +59,22 @@
     }
     button:active, button:hover{
         background-color: #9f1212;
+    }
+    .img-container{
+        position: relative;
+        width:80%;
+        background-color: #aa2c2c;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .overlay{
+        position: absolute;
+        background-color: var(--red);
+        mix-blend-mode: color-burn;
+        width: 100%;
+        height: 100%;
     }
     
 }
@@ -121,21 +150,8 @@
     }
 }
 #Signin{
-    display: flex;
-    margin: 3% auto;
-    justify-content: space-between;
-    gap: var(--generalPadding);
-    height: fit-content;
-    .signin-content{
-        display: flex;
-        flex-direction: column;
-        gap: 2vh;
-        width: 100%;
-    }
-    h1{
-        @include headings();
-    }
     @include forms();
+    @include headings();
     .registration{
         width: 100%;
         button{
@@ -145,16 +161,20 @@
             background-color: #171717;
         }
     }
-    .img-container{
-        width:80%;
-        background-color: #aa2c2c;
-        img{
-            width: 100%;
-            height: 100%;
+}
+#Signup{
+    @include forms();
+    @include headings();
+    .registration{
+        width: 100%;
+        button{
+            background-color: var(--black);
+        }
+        button:active, button:hover{
+            background-color: #171717;
         }
     }
 }
-
 .Article{
     display: flex;
     flex-direction: column;
@@ -204,7 +224,7 @@
             width: 20%;
         }
     }
-    #Signin{
+    #Signin,#Signup{
         flex-direction: column;
         .img-container{
             display: none;

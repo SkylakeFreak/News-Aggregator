@@ -58,7 +58,7 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
   return (
     <div id="Signin">
       <Toaster position="bottom-right" reverseOrder={false} />
-      <div className="signin-content">
+      <div className="content">
         <h1 className="">Sign in</h1>
         <form onSubmit={formsubmit} action="">
           <label>Email
