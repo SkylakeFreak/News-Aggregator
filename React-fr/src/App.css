@@ -3,7 +3,7 @@
     background-color: var(--white);
     width: 78%;
     margin: 0 auto;
-    padding: 1.2em 1.2em 0;
+    padding: var(--generalPadding) var(--generalPadding) 0;
     overflow-x: hidden;
   }
   @media only screen and (max-width: 800px) {

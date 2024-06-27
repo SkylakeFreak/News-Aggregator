@@ -59,7 +59,7 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
     <div id="Signin">
       <Toaster position="bottom-right" reverseOrder={false} />
       <div className="signin-content">
-        <h1 className="">SIGN IN</h1>
+        <h1 className="">Sign in</h1>
         <form onSubmit={formsubmit} action="">
           <label>Email
             <input
@@ -95,8 +95,9 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
             Sign in
           </button>
         </form>
+        <div className="line"></div>
         <div className="registration">
-          <p onClick={Signup} className="">SIGNUP</p>
+          <button onClick={Signup} className="">Register</button>
         </div>
       </div>
       <div className="img-container">
