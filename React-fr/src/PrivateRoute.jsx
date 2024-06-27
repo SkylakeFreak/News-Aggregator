@@ -21,7 +21,7 @@ function PrivateRoute({userauth}) {
 
     if (state) {
         return (
-            <div className='h-screen text-xl flex justify-center items-center w-screen bg-black text-white'>
+            <div id="me" className='h-screen text-xl flex justify-center items-center w-screen bg-black text-white'>
                 <div className='text-sm'>
                 <Toaster position="bottom-right" reverseOrder={false} />
                 </div>

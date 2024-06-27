@@ -28,7 +28,7 @@ function App() {
       <Route path="/Signin" element={<Signin setuseauth={setuseauth} setcurrentemail={setcurrentemail} currentuser={currentuser} setcurrentuser={setcurrentuser}/>}/>
       <Route path="/Signup" element={<Signup/>}/>
       <Route element={<PrivateRoute userauth={userauth}/>}>
-      <Route path='/Content' element={<Content currentuser={currentuser}/>}/>
+      <Route path='/Content' element={<Content currentemail={currentemail} currentuser={currentuser}/>}/>
       <Route path='/NewsData' element={<Newsdata  currentemail={currentemail}/>}/>
 
       </Route>

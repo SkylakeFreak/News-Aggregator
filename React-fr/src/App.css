@@ -1,4 +1,20 @@
 
+
+@keyframes identifier {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+    
+}
+
+#me{
+    animation: identifier 0.3s ease-in-out;
+}
+
 .App{
     background-color: var(--white);
     width: 78%;
