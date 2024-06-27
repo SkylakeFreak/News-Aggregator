@@ -84,6 +84,20 @@ app.post("/checkUser",express.json(),async(req,res)=>{
     
 })
 
+app.post("/getmessagedata",express.json(),async(req,res)=>{
+    const userdata=req.body;
+    const message=await NewsDbs.find({Owner:userdata.currentemail})
+    console.log(message);
+    if (message){
+        res.send(message)
+    }
+    else{
+        res.send("false")
+    }
+
+    
+})
+
 app.listen(3004,()=>[
     console.log("server is Running on port 3004")
 ])

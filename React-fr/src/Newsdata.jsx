@@ -47,7 +47,7 @@ function Newsdata({currentemail}) {
   }
 
   return (
-    <div className="h-screen flex flex-col">
+    <div id="me" className="h-screen flex flex-col">
       <div><Toaster/></div>
       <div>
       <button onClick={()=>{
