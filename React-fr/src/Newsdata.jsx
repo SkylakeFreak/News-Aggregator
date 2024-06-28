@@ -58,7 +58,7 @@ function Newsdata({currentemail}) {
       
       
       
-      <div className="flex flex-row w-screen h-screen items-center justify-evenly">
+      <div className="flex flex-row h-screen items-center justify-evenly">
         <div className="flex h-[650px] items-start">
         <select onChange={(e)=>{
           setDept(e.target.value)
