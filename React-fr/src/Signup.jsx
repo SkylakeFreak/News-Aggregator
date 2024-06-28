@@ -67,42 +67,56 @@ function Signup() {
         <h1>Register</h1>
         <form onSubmit={formsubmit} action="">
           <label>Email
-          <input
-            onChange={(e) => {
-              setemail(e.target.value);
-            }}
-            required={true}
-            placeholder="Email"
-            className=""
-            type="text"
-          /></label>
-          <input
-            onChange={(e) => {
-              setusername(e.target.value);
-            }}
-            required={true}
-            placeholder="Username"
-            className=""
-            type="text"
-          />
-          <input
-            onChange={(e) => {
-              setpassword(e.target.value);
-            }}
-            required={true}
-            placeholder="Password"
-            className=""
-            type="password"
-          />
-          <input
-            onChange={(e) => {
-              setpassword1(e.target.value);
-            }}
-            required={true}
-            placeholder="Confirm Password"
-            className=""
-            type="password"
-          />
+            <input
+              onChange={(e) => {
+                setemail(e.target.value);
+              }}
+              required={true}
+              placeholder="someone@gmail.com"
+              className=""
+              type="text"/>
+          </label>
+          <label>Username
+            <input
+              onChange={(e) => {
+                setusername(e.target.value);
+              }}
+              required={true}
+              placeholder="someone123"
+              className=""
+              type="text"
+            /
+          ></label>
+          <label>Passsword
+            <input
+              onChange={(e) => {
+                setpassword(e.target.value);
+              }}
+              required={true}
+              placeholder="Password"
+              className=""
+              type="password"
+            />
+          </label>
+          <label>Confirm Password
+            <input
+              onChange={(e) => {
+                setpassword1(e.target.value);
+              }}
+              required={true}
+              placeholder="Confirm Password"
+              className=""
+              type="password"
+            />
+          </label>
+          <label>Role
+            <div className="role">
+              <input type="radio" name="role" value="Admin" id="Admin"/>
+              <label for="Admin">Admin</label>
+              <input type="radio" name="role" value="User" id="User"/>
+              <label for="User">User</label>
+            </div>
+          </label>
           <button
               type="submit"
               className=""
