@@ -112,7 +112,7 @@ function Signup() {
         </form>
         <div className="line"></div>
         <div className="registration">
-          <button onClick={()=>{history('/Signin')}} className="">Signin</button>
+          <button onClick={()=>{history('/Signin')}} className="">Sign in</button>
         </div>
       </div>
       <div className="img-container">
