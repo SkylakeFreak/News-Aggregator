@@ -58,7 +58,7 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
   return (
     <div id="Signin">
       <Toaster position="bottom-right" reverseOrder={false} />
-      <div className="signin-content">
+      <div className="content">
         <h1 className="">Sign in</h1>
         <form onSubmit={formsubmit} action="">
           <label>Email
@@ -66,7 +66,7 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
               onChange={(e) => {
                 setemail(e.target.value);
               }}
-              placeholder="Email"
+              placeholder="someone@gmail.com"
               className=""
               type="text"
             />
@@ -76,7 +76,7 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
               onChange={(e) => {
                 setusername(e.target.value);
               }}
-              placeholder="Username"
+              placeholder="someone123"
               className=""
               type="text"
             />
@@ -90,6 +90,14 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
               className=""
               type="password"
             />
+          </label>
+          <label>Role
+            <div className="role">
+              <input type="radio" name="role" value="Admin" id="Admin"/>
+              <label for="Admin">Admin</label>
+              <input type="radio" name="role" value="User" id="User"/>
+              <label for="User">User</label>
+            </div>
           </label>
           <button className="">
             Sign in

@@ -17,11 +17,11 @@ function Content({currentuser,currentemail}) {
   },[])
   return (
     <div id="me"  className='flex flex-col h-screen'>
-      <p className='font-bold text-3xl mt-2 flex w-screen justify-center'>{currentuser} Current Uploaded Data</p>
-      <p className='w-screen text-xl mt-10 text-center'>{"Welcome "}{currentemail}</p>
+      <p className='font-bold text-3xl mt-2 flex  justify-center'>{currentuser} Current Uploaded Data</p>
+      <p className='text-xl mt-10 text-center'>{"Welcome "}{currentemail}</p>
       
       
-      <div className='h-screen w-screen flex flex-col items-center justify-center'>
+      <div className='h-screen flex flex-col items-center justify-center'>
         <div className='p-5 h-[500px] max-w-[1000px] overflow-y-scroll mr-4 ml-4 mb-4'>
           {
 
