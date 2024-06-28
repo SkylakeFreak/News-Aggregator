@@ -1,6 +1,11 @@
 import './style.scss';
 import pfp from './assets/profile.svg';
 function Header(){
+    let time=new Date()
+    const year=time.getFullYear()
+    const month=time.getMonth()
+    const day=time.getDay()
+    const date=time.getDate()
     
     return(
         <div id='Header'>
@@ -11,8 +16,7 @@ function Header(){
             <div className="timeline">
                 <div className='line'></div>
                 <div className='container'>
-                    <span>Time</span>
-                    <span>Date</span>
+                    <span>Date: {date}/{month}/{year}</span>
                     <a href=''><span>paruluniversity.ac.in</span></a>
                 </div>
             </div>

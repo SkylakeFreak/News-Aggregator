@@ -9,7 +9,7 @@ import Content from './Content';
 import Newsdata from './Newsdata';
 import Header from './Header';
 import Footer from './Footer';
-
+import MainAdmin from './MainAdmin';
 import './App.css';
 import { useState } from 'react';
 
@@ -24,12 +24,14 @@ function App() {
     <Header/>
     <BrowserRouter>
     <Routes>
+    <Route path="/Admin" element={<MainAdmin/>}/>
       <Route path="/" element={<Front/>}/>
       <Route path="/Signin" element={<Signin setuseauth={setuseauth} setcurrentemail={setcurrentemail} currentuser={currentuser} setcurrentuser={setcurrentuser}/>}/>
       <Route path="/Signup" element={<Signup/>}/>
       <Route element={<PrivateRoute userauth={userauth}/>}>
       <Route path='/Content' element={<Content currentemail={currentemail} currentuser={currentuser}/>}/>
       <Route path='/NewsData' element={<Newsdata  currentemail={currentemail}/>}/>
+      
 
       </Route>
     </Routes>
