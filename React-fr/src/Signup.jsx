@@ -109,14 +109,14 @@ function Signup() {
               type="password"
             />
           </label>
-          <label>Role
+          {/* <label>Role
             <div className="role">
               <input type="radio" name="role" value="Admin" id="Admin"/>
               <label for="Admin">Admin</label>
               <input type="radio" name="role" value="User" id="User"/>
               <label for="User">User</label>
             </div>
-          </label>
+          </label> */}
           <button
               type="submit"
               className=""

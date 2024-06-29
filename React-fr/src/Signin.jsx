@@ -7,6 +7,9 @@ import './style.scss';
 
 
 function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
+
+  const [typeuser,settypeuser]=useState("");
+
   let history = useNavigate();
   const [Email, setemail] = useState("");
   const [Username, setusername] = useState("");
@@ -16,6 +19,7 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
     Navigate("/Signup");
   };
   const formsubmit = async (e) => {
+    console.log(typeuser)
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3004/checkUser", {
@@ -61,7 +65,7 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
       <div className="content">
         <h1 className="">Sign in</h1>
         <form onSubmit={formsubmit} action="">
-          <label>Email
+          {(typeuser==="User")&&<label>Email
             <input
               onChange={(e) => {
                 setemail(e.target.value);
@@ -70,8 +74,20 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
               className=""
               type="text"
             />
-          </label>
-          <label>Username
+          </label>}
+
+          {(typeuser==="Admin")&&<label>Email
+            <input
+              onChange={(e) => {
+                setemail(e.target.value);
+              }}
+              placeholder="Admin@private.com"
+              className=""
+              type="text"
+            />
+          </label>}
+
+          {(typeuser==="User")&&<label>Username
             <input
               onChange={(e) => {
                 setusername(e.target.value);
@@ -80,8 +96,21 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
               className=""
               type="text"
             />
-          </label>
-          <label>Password
+          </label>}
+
+          {(typeuser==="Admin")&&<label>One Time Access Code
+            <input
+              onChange={(e) => {
+                setusername(e.target.value);
+              }}
+              placeholder="********"
+              className=""
+              type="text"
+            />
+          </label>}
+          
+
+          {(typeuser==="User")&&<label>Password
             <input
               onChange={(e) => {
                 setpassword(e.target.value);
@@ -90,12 +119,17 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
               className=""
               type="password"
             />
-          </label>
+          </label>}
+
           <label>Role
             <div className="role">
-              <input type="radio" name="role" value="Admin" id="Admin"/>
+              <input onClick={(e)=>{
+                settypeuser(e.target.value)
+              }} type="radio" name="role" value="Admin" id="Admin"/>
               <label for="Admin">Admin</label>
-              <input type="radio" name="role" value="User" id="User"/>
+              <input  onClick={(e)=>{
+                settypeuser(e.target.value)
+              }} type="radio" name="role" value="User" id="User"/>
               <label for="User">User</label>
             </div>
           </label>
