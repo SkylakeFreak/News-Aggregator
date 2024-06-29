@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import './style.scss';
 
 
-function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
+function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser,setuseauth1}) {
 
   const [typeuser,settypeuser]=useState("");
 
@@ -27,15 +27,18 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
         Password
       })
       if (response.data==="Allow"){
+        setuseauth1(true);
         toast.success("Success");
         toast.loading("Will redirect...")
         setTimeout(() => {
           
           toast.dismiss()
+          history("/Admin")
           
         }, 2000);
       }
       else{
+        setuseauth(false);
         window.alert("Not Authorized")
       }
 
@@ -84,7 +87,7 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
   };
   return (
     <div id="Signin">
-      <Toaster position="bottom-right" reverseOrder={false} />
+      <Toaster/>
       <div className="content">
         <h1 className="">Sign in</h1>
         <form onSubmit={formsubmit} action="">

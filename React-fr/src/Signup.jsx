@@ -62,7 +62,7 @@ function Signup() {
 
   return (
     <div id="Signup">
-      <Toaster position="bottom-right" reverseOrder={false}/>
+      <Toaster/>
       <div className="content">
         <h1>Register</h1>
         <form onSubmit={formsubmit} action="">

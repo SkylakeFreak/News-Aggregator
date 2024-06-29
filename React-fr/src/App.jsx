@@ -12,9 +12,11 @@ import Footer from './Footer';
 import MainAdmin from './MainAdmin';
 import './App.css';
 import { useState } from 'react';
+import PrivateRouteAdmin from './PrivateRouteAdmin';
 
 function App() {
   const [userauth,setuseauth]=useState(true);
+  const [userauth1,setuseauth1]=useState(true);
   const [currentuser,setcurrentuser]=useState("");
   const [currentemail,setcurrentemail]=useState("");
   console.log(currentemail);
@@ -24,15 +26,18 @@ function App() {
     <Header/>
     <BrowserRouter>
     <Routes>
-    <Route path="/Admin" element={<MainAdmin/>}/>
+    
       <Route path="/" element={<Front/>}/>
-      <Route path="/Signin" element={<Signin setuseauth={setuseauth} setcurrentemail={setcurrentemail} currentuser={currentuser} setcurrentuser={setcurrentuser}/>}/>
+      <Route path="/Signin" element={<Signin setuseauth1={setuseauth1} setuseauth={setuseauth} setcurrentemail={setcurrentemail} currentuser={currentuser} setcurrentuser={setcurrentuser}/>}/>
       <Route path="/Signup" element={<Signup/>}/>
       <Route element={<PrivateRoute userauth={userauth}/>}>
-      <Route path='/Content' element={<Content currentemail={currentemail} currentuser={currentuser}/>}/>
-      <Route path='/NewsData' element={<Newsdata  currentemail={currentemail}/>}/>
-      
 
+      
+      <Route path='/Content' element={<Content currentemail={currentemail} currentuser={currentuser}/>}/>
+      </Route>
+      <Route path='/NewsData' element={<Newsdata  currentemail={currentemail}/>}/>
+      <Route element={<PrivateRouteAdmin userauth1={userauth1}/>}>
+      <Route path="/Admin" element={<MainAdmin/>}/>
       </Route>
     </Routes>
     </BrowserRouter>

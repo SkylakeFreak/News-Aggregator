@@ -109,6 +109,18 @@ app.post("/adminlogin",express.json(),async(req,res)=>{
     
 })
 
+app.post("/getadmindata",express.json(),async(req,res)=>{
+    try{
+        const message=await NewsDbs.find({});
+        console.log(message)
+        res.send(message);
+
+    }
+    catch{
+        console.log("error")
+    }
+})
+
 app.listen(3004,()=>[
     console.log("server is Running on port 3004")
 ])
