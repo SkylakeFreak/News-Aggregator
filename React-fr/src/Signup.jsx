@@ -133,53 +133,6 @@ function Signup() {
         <div className="overlay"></div>
         <img src='https://cdn.dribbble.com/users/136988/screenshots/1921959/door_smal.gif'/>
       </div>
-      {/* <div className="">
-        <input
-          onChange={(e) => {
-            setday(e.target.value);
-          }}
-          required={true}
-          placeholder="Day"
-          className=""
-          type="Number"
-        />
-        <input
-          onChange={(e) => {
-            setmonth(e.target.value);
-          }}
-          required={true}
-          placeholder="Month"
-          className=""
-          type="Number"
-        />
-        <input
-          onChange={(e) => {
-            setYear(e.target.value);
-          }}
-          required={true}
-          placeholder="Year"
-          className=""
-          type="Number"
-        />
-      </div>
-        <input
-          onChange={(e) => {
-            setlink(e.target.value);
-          }}
-          required={true}
-          placeholder="Profile Image Link"
-          className=""
-          type="text"
-        />
-        <textarea
-          onChange={(e) => {
-            setabout(e.target.value);
-          }}
-          placeholder="Write Something About Yourself!"
-          className=""
-          name=""
-          id=""
-        ></textarea> */}
     </div>
   );
 }

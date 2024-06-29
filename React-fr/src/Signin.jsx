@@ -21,43 +21,66 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
   const formsubmit = async (e) => {
     console.log(typeuser)
     e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3004/checkUser", {
+    if (typeuser==="Admin"){
+      const response=await axios.post("http://localhost:3004/adminlogin",{
         Email,
-        Username,
-        Password,
-      });
-      setcurrentuser(Username);
-      setcurrentemail(Email);
-      
-      console.log(response.data);
-      if (response.data === true) {
-        toast.success("Found You!!");
-        setuseauth(false)
+        Password
+      })
+      if (response.data==="Allow"){
+        toast.success("Success");
+        toast.loading("Will redirect...")
         setTimeout(() => {
-          toast.dismiss();
-          history("/Content");
+          
+          toast.dismiss()
+          
         }, 2000);
-        toast.loading("Will Redirect");
-      } else if(response.data===false) {
-        toast.error("Account Doesn't Exists With Us..!!");
-        setTimeout(() => {
-          history('/Signup')
-        }, 2000);
-        toast.loading("Will Redirect..");
       }
       else{
-        toast.error("Sorry Incorrect Password!");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-        toast.loading("Will Referesh");
-
-
+        window.alert("Not Authorized")
       }
-    } catch (error) {
-      console.error(error);
+
     }
+    else{
+      try {
+        const response = await axios.post("http://localhost:3004/checkUser", {
+          Email,
+          Username,
+          Password,
+        });
+        setcurrentuser(Username);
+        setcurrentemail(Email);
+        
+        console.log(response.data);
+        if (response.data === true) {
+          toast.success("Found You!!");
+          setuseauth(false)
+          setTimeout(() => {
+            toast.dismiss();
+            history("/Content");
+          }, 2000);
+          toast.loading("Will Redirect");
+        } else if(response.data===false) {
+          toast.error("Account Doesn't Exists With Us..!!");
+          setTimeout(() => {
+            history('/Signup')
+          }, 2000);
+          toast.loading("Will Redirect..");
+        }
+        else{
+          toast.error("Sorry Incorrect Password!");
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          toast.loading("Will Referesh");
+  
+  
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+    }
+   
   };
   return (
     <div id="Signin">
@@ -101,7 +124,7 @@ function Signin({setuseauth,currentuser,setcurrentemail,setcurrentuser}) {
           {(typeuser==="Admin")&&<label>One Time Access Code
             <input
               onChange={(e) => {
-                setusername(e.target.value);
+                setpassword(e.target.value);
               }}
               placeholder="********"
               className=""

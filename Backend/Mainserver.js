@@ -98,6 +98,17 @@ app.post("/getmessagedata",express.json(),async(req,res)=>{
     
 })
 
+app.post("/adminlogin",express.json(),async(req,res)=>{
+    const data=req.body;
+    if (data.Email==="demo.user1234@example.com" && data.Password==="demo.user1234@example.com"){
+        res.send("Allow")
+    }
+    else{
+        res.send("Notallow")
+    }
+    
+})
+
 app.listen(3004,()=>[
     console.log("server is Running on port 3004")
 ])
