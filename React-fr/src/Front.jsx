@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from "react-dom/client";
 import { useNavigate,BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from './Signin';
+
 function Front() {
     let history=useNavigate();
     const Loginclick=()=>{
