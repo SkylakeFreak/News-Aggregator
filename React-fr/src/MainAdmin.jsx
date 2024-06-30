@@ -3,8 +3,43 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import axios from 'axios';
 import './style.scss';
 
+function Tile({ element, onClick }) {
+  return (
+    <div className='tile'>
+      <div onClick={onClick}>
+        <h2>{element.Title}</h2>
+        <p>Sender: {element.Owner}</p>
+        <span>{element.date}</span>
+      </div>
+      <button>Deny</button>
+    </div>
+  );
+}
+
+function Modal({ element, onClose }) {
+  return (
+    <div className='modal'>
+      <div className='modal-content'>
+        <span className='close' onClick={onClose}>&#10006;</span>
+        <h2>{element.Title}</h2>
+        <span>Sender: {element.Owner}</span>
+        <p>{element.date}</p>
+        
+        <img src={element.Imglink} alt="Image" />
+        <p className='content'>{element.Content}</p>
+        <div>
+          <button className='Approve'>Approve</button>
+          <button className='Deny'>Deny</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function MainAdmin() {
   const [data1,setdata1]=useState([])
+  const [selectedElement, setSelectedElement] = useState(null);
+
   useEffect(()=>{
     getdata()
   },[])
@@ -12,51 +47,27 @@ function MainAdmin() {
     const response=await axios.post("http://localhost:3004/getadmindata")
     setdata1(response.data)
   }
+  const handleTileClick = (element) => {
+    setSelectedElement(element);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedElement(null);
+  };
 
   return (
-    <div className=''>
-        <p className=''>Admin</p>
-        {<div className=''>
-        {
-              data1.map((element,index)=>{
-                return(
-                  <div className='' key={index}>
-                    <div className=''>
-                    <p className=''>Sender: {element.Owner}</p>
-                    <p className=''>{element.date}</p>
-                    <p className=''>{element.Title}</p>
-                    <div className=''>
-                      <img src={element.Imglink} alt="" />
-                    </div>
-                    <p className=''>{element.Content}</p>
-                    {/* <p>{element.Imglink}</p> */}
-                    {/* <p  className='text-2xl text-red-500 font-mono font-semibold mt-4'>Status: {element.Approved}</p> */}
-                    <div className=''>
-                    <button className=''>Approve?</button>
-                    <button className=''>Disapprove?</button>
-                    </div>
-                    
-                 
-
-                    </div>
-                    
-                    
-                  </div>
-                  
-                )
-                
-                
-              })
-    }
-
-        </div>}
-           
-        
-        
-        
-        
+    <div className='AdminPanel'>
+      <h1>Admin Panel</h1>
+      <div className='tiles'>
+        {data1.map((element, index) => (
+          <Tile key={index} element={element} onClick={() => handleTileClick(element)} />
+        ))}
+      </div>
+      {selectedElement && (
+        <Modal element={selectedElement} onClose={handleCloseModal} />
+      )}
     </div>
-  )
+  );
 }
 
 export default MainAdmin

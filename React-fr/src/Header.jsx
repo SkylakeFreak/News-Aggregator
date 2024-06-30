@@ -38,7 +38,7 @@ function Header(){
             </div>
             <div className="timeline">
                 <div className='line'></div>
-                <div className=' text-lg p-1 flex flex-row justify-between ml-5 mr-5 '>
+                <div className='container'>
                     <span>{hours}: {minutes}: {seconds}</span>
                     <span>{day}, {date} {month} {year}</span>
                     <a href=''><span>paruluniversity.ac.in</span></a>

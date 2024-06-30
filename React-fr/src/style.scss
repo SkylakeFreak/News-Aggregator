@@ -5,28 +5,37 @@
     box-sizing: border-box;
     color: var(--black);
     font-family: var(--font1);
+    transition: all linear 100ms;
 }
 :root{
     --black:#202020;
     --white:#D9D9D9;
     --red:#B50E0E;
+    --darkRed:#8f0e0e;
     --gray:#00000058;
     --font1:'Montserrat', sans-serif;
     --font2:'Playfair Display', serif;
     --generalPadding:1.2rem;
+    --margin3:3% auto;
+    --verysmallfont:clamp(0.6rem,1vw,1rem);
+    --btfont:clamp(1rem,1.1vw,2rem);
+    --bigfont:clamp(1rem,4vw,1.5rem);
+    --mediumfont:clamp(1rem,1.4vw,2rem);
+    --contentfont:clamp(1rem,1.2vw,2rem);
+    --border:3px solid var(--black);
 }
 @mixin headings{
     h1{
         font-family: var(--font1);
         font-weight: 800;
         color: var(--red);
-        font-size: clamp(2.7rem,4vw,6rem);
+        font-size: clamp(2.4rem,4vw,6rem);
     }
     
 }
 @mixin forms{
     display: flex;
-    margin: 3% auto;
+    margin: var(--margin3);
     justify-content: space-between;
     gap: var(--generalPadding);
     height: fit-content;
@@ -43,28 +52,22 @@
     }
     label{
         cursor: pointer;
-        font-size: 0.9rem;
+        font-size: var(--verysmallfont);
     }
     input{
-        font-size: clamp(0.5rem,4vw,1.5rem);
+        font-size:var(--bigfont);
         width: 100%;
         background-color:transparent;
-        border-bottom:2px solid var(--black);
+        border-bottom:var(--border);
     }
     button{
-        background-color: var(--red);
-        color: var(--white);
-        font-weight: 700;
-        padding:15px 10px;
+        @include buttons(var(--red),var(--white) );
         width: 100%;
-    }
-    button:active, button:hover{
-        background-color: #9f1212;
     }
     .img-container{
         position: relative;
         width:80%;
-        background-color: #aa2c2c;
+        background-color: var(--red);
         img{
             width: 100%;
             height: 100%;
@@ -77,6 +80,12 @@
         width: 100%;
         height: 100%;
     }
+    .registration{
+        width: 100%;
+        button{
+            background-color: var(--black);
+        }
+    }
     .role{
         display: flex;
         justify-content: space-between;
@@ -86,18 +95,38 @@
             display: none;
         }
         label{
-            font-size: clamp(0.5rem,4vw,1.5rem);
+            @include buttons(var(--black),var(--white) ,3px );
             width: 100%;
             text-align: center;
-            padding:15px 10px;
-            border: 2px solid var(--black);
+            
         }
-        input[type="radio"]:checked+label{
+        input[type="radio"]:checked+label, label:hover,label:active{
             background-color: var(--red);
             color: var(--white);
-            border: none;
+            border: 3px solid transparent;
         }
     }
+}
+@mixin buttons($bckcolor,$fontcolor,$border:0){
+    background-color: $bckcolor;
+    color: $fontcolor;
+    font-size: var(--btfont);
+    font-weight: 600;
+    padding:15px 25px;
+    &:hover, &:active{
+        filter: brightness(90%);
+    }
+    @if $border != 0 {
+        border: $border solid $bckcolor;
+        background-color: transparent;
+        color: $bckcolor;
+        &:hover, &:active{
+            background-color: var(--red);
+            color: var(--white);
+            border: $border solid transparent;
+            filter: brightness(100%);
+        }
+      }
 }
 .line{
     width: 100%;
@@ -116,13 +145,13 @@
             margin-top: -2.5%;
         }
         p{
-            font-size: clamp(0.5rem,1vw,1rem);
+            font-size:var(--verysmallfont);
             font-weight: 700;
             color: var(--red);
         }
     }
     .timeline{
-        font-size: clamp(0.6rem,1vw,1rem);
+        font-size: var(--verysmallfont);
         display: flex;
         flex-direction: column;
         .container{
@@ -143,7 +172,7 @@
         padding:0.8% 1.5%;
         p{
             color: var(--white);
-            font-size: clamp(0.2rem,0.8vw,1rem);
+            font-size: var(--verysmallfont);
             cursor: pointer;
         }
         p:hover,img:hover{
@@ -167,34 +196,16 @@
     }
     span{
         color: var(--white);
-        font-size: clamp(0.6rem,1vw,1rem);
+        font-size: var(--verysmallfont);
     }
 }
 #Signin{
     @include forms();
     @include headings();
-    .registration{
-        width: 100%;
-        button{
-            background-color: var(--black);
-        }
-        button:active, button:hover{
-            background-color: #171717;
-        }
-    }
 }
 #Signup{
     @include forms();
     @include headings();
-    .registration{
-        width: 100%;
-        button{
-            background-color: var(--black);
-        }
-        button:active, button:hover{
-            background-color: #171717;
-        }
-    }
 }
 #me{
     @include headings();
@@ -203,48 +214,149 @@
     flex-direction: column;
     gap: 20px;
 }
-.Article{
-    display: flex;
-    flex-direction: column;
-    gap: 3vh;
-    margin: 2% 0;
-    h1{
-        font-size: clamp(2rem,5vw,6rem);
+.AdminPanel {
+    @include headings();
+    margin:var(--margin3);
+    .tiles {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
-    .article-info{
+  
+    .tile {
         display: flex;
-        flex-direction: column;
-        gap: 5px;
+        justify-content: space-between;
+        align-items: center;
+        border:var(--border);
+        padding: 10px;
+        &:hover {
+            background-color: rgb(203, 203, 203);
+        }
+        div{
+            cursor: pointer;
+        }
+        h2{
+            font-size: var(--mediumfont);
+            font-weight: 600;
+        }
         span{
+            font-size:var(--verysmallfont);
             color: var(--gray);
-            font-size: clamp(0.8rem,1.2vw,1.5rem);
+            font-weight: 500;
+        }
+        p{
+            font-size:var(--contentfont);
+            font-weight: 500;
+        }
+        button{
+            @include buttons(var(--red),var(--white) ,0 )
+        }
+    }
+  
+    .modal {
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      backdrop-filter: blur(10px);
+  
+      .modal-content {
+        background-color: var(--white);
+        border: var(--border);
+        margin:var(--margin3);
+        padding: 2%;
+        width: 100%;
+        max-width: 70vw;
+        h2{
+            font-size: clamp(1rem,2vw,3rem);
+            font-weight: 600;
+        }
+        span{
+            font-size: var(--contentfont);
+            font-weight: 500;
+        }
+        p{
+            font-size: var(--verysmallfont);
+            color: var(--gray);
+            font-weight: 600;
+        }
+        .content{
+            font-size:var(--contentfont);
+            font-weight: 400;
+            color: var(--black);
+            text-align: justify;
+        }
+        img{
+            margin: 2% auto;
         }
         div{
             display: flex;
             align-items: center;
-            gap: 17px;
-            img:hover,img:active{
-                cursor: pointer;
-                transform: scale(1.2);
-            }
+            justify-content: center;
+            gap: var(--generalPadding);
+            margin: 2% auto;
         }
-    }
-    .img-container{
-        width: 100%;
-        height: 80vh;
-        background-color: var(--gray);
-        img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        button{
+            width:30%;
         }
+        .Approve{
+            @include buttons(var(--black),var(--white),0 );
+        }
+        .Deny{
+            @include buttons(var(--red),var(--white),0 );
+        }
+      }
+      .close {
+        color: var(--black);
+        float: right;
+        &:hover,
+        &:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
     }
-    .content{
-        font-size: clamp(0.8rem,1.2vw,1rem);
-        text-align: justify;
-        
-    }
-}
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 800px) {
     #Footer{
         padding:1.5% 2.5%;
