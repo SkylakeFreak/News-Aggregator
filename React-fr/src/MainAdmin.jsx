@@ -4,6 +4,9 @@ import axios from 'axios';
 
 function MainAdmin() {
   const [data1,setdata1]=useState([])
+  useEffect(()=>{
+    getdata()
+  })
   const getdata=async()=>{
     const response=await axios.post("http://localhost:3004/getadmindata")
     setdata1(response.data)
@@ -12,9 +15,6 @@ function MainAdmin() {
   return (
     <div className='h-screen flex flex-col items-center justify-center'>
         <p className='font-bold text-4xl mt-10'>Admin</p>
-        <button onClick={()=>{
-          getdata();
-        }}>check</button>
         {<div className='h-full overflow-y-scroll items-center justify-center'>
         {
               data1.map((element,index)=>{
