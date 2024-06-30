@@ -18,10 +18,10 @@
     --generalPadding:1.2rem;
     --margin3:3% auto;
     --verysmallfont:clamp(0.6rem,1vw,1rem);
-    --btfont:clamp(1rem,1.1vw,2rem);
+    --btfont:clamp(0.7rem,1.1vw,2rem);
     --bigfont:clamp(1rem,4vw,1.5rem);
     --mediumfont:clamp(1rem,1.4vw,2rem);
-    --contentfont:clamp(1rem,1.2vw,2rem);
+    --contentfont:clamp(0.8rem,1.2vw,2rem);
     --border:3px solid var(--black);
 }
 @mixin headings{
@@ -269,7 +269,7 @@
         margin:var(--margin3);
         padding: 2%;
         width: 100%;
-        max-width: 70vw;
+        max-width: 90vw;
         h2{
             font-size: clamp(1rem,2vw,3rem);
             font-weight: 600;
