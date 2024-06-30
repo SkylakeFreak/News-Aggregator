@@ -7,7 +7,7 @@ function MainAdmin() {
   const [data1,setdata1]=useState([])
   useEffect(()=>{
     getdata()
-  })
+  },[])
   const getdata=async()=>{
     const response=await axios.post("http://localhost:3004/getadmindata")
     setdata1(response.data)
