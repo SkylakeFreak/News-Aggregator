@@ -21,11 +21,10 @@ function PrivateRoute({userauth}) {
 
     if (state) {
         return (
-            <div id="me" className='h-screen text-xl flex justify-center items-center w-screen bg-black text-white'>
-                <div className='text-sm'>
-                <Toaster position="bottom-right" reverseOrder={false} />
-                </div>
-                
+            <div id="me" className='h-screen text-3xl flex justify-center items-center text-white'>
+                <div className='text-lg'>
+                <Toaster/>
+                </div>  
                 <p>Not Authorized</p>
             </div>
         );

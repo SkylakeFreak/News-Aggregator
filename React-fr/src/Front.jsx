@@ -9,7 +9,7 @@ function Front() {
         history('/Signin')
     }
   return (
-    <div id='me' className='h-screen w-screen flex flex-col'>
+    <div id='me' className='h-screen flex flex-col'>
     <div className='flex justify-center items-center'><p onClick={Loginclick} className='cursor-pointer'>SIGN-IN</p></div>
     <div className='h-full flex items-center justify-center w-full'>
     </div>

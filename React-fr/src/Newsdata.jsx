@@ -82,7 +82,7 @@ function Newsdata({currentemail}) {
           <textarea required={true} onChange={submitcontent} className="" name="content" placeholder="Write Your news here!" id=""></textarea>
         </label>
         <label>Media
-          <input type="file" required onChange={submitlink} placeholder="Paste Your Image Link Here" name="imglink" className="" id=""></input>
+          <input type="text" required onChange={submitlink} placeholder="Paste Your Image Link Here" name="imglink" className="" id=""></input>
         </label>
         <button className="" type="submit">Submit Request</button>
       </form>

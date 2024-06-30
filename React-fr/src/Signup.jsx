@@ -62,7 +62,7 @@ function Signup() {
 
   return (
     <div id="Signup">
-      <Toaster position="bottom-right" reverseOrder={false}/>
+      <Toaster/>
       <div className="content">
         <h1>Register</h1>
         <form onSubmit={formsubmit} action="">
@@ -109,14 +109,14 @@ function Signup() {
               type="password"
             />
           </label>
-          <label>Role
+          {/* <label>Role
             <div className="role">
               <input type="radio" name="role" value="Admin" id="Admin"/>
               <label for="Admin">Admin</label>
               <input type="radio" name="role" value="User" id="User"/>
               <label for="User">User</label>
             </div>
-          </label>
+          </label> */}
           <button
               type="submit"
               className=""
@@ -133,53 +133,6 @@ function Signup() {
         <div className="overlay"></div>
         <img src='https://cdn.dribbble.com/users/136988/screenshots/1921959/door_smal.gif'/>
       </div>
-      {/* <div className="">
-        <input
-          onChange={(e) => {
-            setday(e.target.value);
-          }}
-          required={true}
-          placeholder="Day"
-          className=""
-          type="Number"
-        />
-        <input
-          onChange={(e) => {
-            setmonth(e.target.value);
-          }}
-          required={true}
-          placeholder="Month"
-          className=""
-          type="Number"
-        />
-        <input
-          onChange={(e) => {
-            setYear(e.target.value);
-          }}
-          required={true}
-          placeholder="Year"
-          className=""
-          type="Number"
-        />
-      </div>
-        <input
-          onChange={(e) => {
-            setlink(e.target.value);
-          }}
-          required={true}
-          placeholder="Profile Image Link"
-          className=""
-          type="text"
-        />
-        <textarea
-          onChange={(e) => {
-            setabout(e.target.value);
-          }}
-          placeholder="Write Something About Yourself!"
-          className=""
-          name=""
-          id=""
-        ></textarea> */}
     </div>
   );
 }
