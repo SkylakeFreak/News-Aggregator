@@ -16,7 +16,7 @@ import { useState } from 'react';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 
 function App() {
-  const [userauth,setuseauth]=useState(true);
+  const [userauth,setuseauth]=useState(false);
   const [userauth1,setuseauth1]=useState(true);
   const [currentuser,setcurrentuser]=useState("");
   const [currentemail,setcurrentemail]=useState("");

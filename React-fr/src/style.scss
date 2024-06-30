@@ -16,7 +16,7 @@
     --font1:'Montserrat', sans-serif;
     --font2:'Playfair Display', serif;
     --generalPadding:1.2rem;
-    --margin3:3% auto;
+    --margin3:var(--generalPadding) auto;
     --verysmallfont:clamp(0.6rem,1vw,1rem);
     --btfont:clamp(0.7rem,1.1vw,2rem);
     --bigfont:clamp(1rem,4vw,1.5rem);
@@ -31,7 +31,16 @@
         color: var(--red);
         font-size: clamp(2.4rem,4vw,6rem);
     }
-    
+}
+@mixin labels{
+    cursor: pointer;
+    font-size: var(--verysmallfont);
+    input{
+        font-size:var(--bigfont);
+        width: 100%;
+        background-color:transparent;
+        border-bottom:var(--border);
+    }
 }
 @mixin forms{
     display: flex;
@@ -216,15 +225,55 @@
     @include forms();
     @include headings();
 }
+.back-bt{
+    font-size: clamp(2.4rem,3vw,5rem);
+    color:var(--red);
+    &:hover, &:active{
+        color: var(--black);
+    }
+}
 #me{
     @include headings();
-    background-color: #444444;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    margin: var(--margin3);
+    gap: var(--generalPadding);
+    .heading-container{
+        display: flex;
+        align-items: center;
+        gap: var(--generalPadding);
+    }
     form{
         display: flex;
         flex-direction: column;
+        gap: 2vw;
+        @include labels();
+    }
+    input,select,textarea{
+        font-weight: 500;
+    }
+    .selected-category{
+        color: var(--gray);
+    }
+    select{
+        background-color: var(--black);
+        color: var(--white);
+        width: 100%;
+        padding:15px 5px;
+        font-size:var(--bigfont);
+        option{
+            color: var(--white);
+        }
+    }
+    textarea{
+        width: 100%;
+        min-height: 30vh;
+        background-color: transparent;
+        border: var(--border);
+        font-size: var(--contentfont);
+    }
+    .submit-bt{
+        @include buttons(var(--red),var(--white) ,0 );
     }
 }
 .AdminPanel {
@@ -233,7 +282,7 @@
     .tiles {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: var(--generalPadding);
     }
   
     .tile {

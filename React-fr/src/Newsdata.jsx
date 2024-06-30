@@ -51,11 +51,11 @@ function Newsdata({currentemail}) {
   return (
     <div id="me" className="">
       <Toaster/>
-      <form onSubmit={formsubmit} action="">
-        <div className="heading-container">
-          <button onClick={()=>{route("/Content")}} className="">&#129128;</button>
+      <div className="heading-container">
+          <button onClick={()=>{route("/Content")}} className="back-bt">&#129136;</button>
           <h1>You are Writing an Article</h1>
         </div>
+      <form onSubmit={formsubmit} action="">
         <label>Title
         <input type="text" required onChange={submittitle} placeholder="Article 1" name="title" className="" id=""/>
         </label>
@@ -76,7 +76,7 @@ function Newsdata({currentemail}) {
               <option value="Entreprenurship Development Cell">Entreprenurship Development Cell</option>
               <option value="Women Empowerment Cell">Women Empowerment Cell</option>
             </select>
-            <p>{"Selected Category : "} <span className="">{Dept}</span></p>
+            <p className="selected-category">Selected Category: {Dept}</p>
         </label>
         <label>Content
           <textarea required={true} onChange={submitcontent} className="" name="content" placeholder="Write Your news here!" id=""></textarea>
@@ -84,7 +84,7 @@ function Newsdata({currentemail}) {
         <label>Media
           <input type="text" required onChange={submitlink} placeholder="Paste Your Image Link Here" name="imglink" className="" id=""></input>
         </label>
-        <button className="" type="submit">Submit Request</button>
+        <button className="submit-bt" type="submit">Submit Request</button>
       </form>
     </div>
   );

@@ -41,7 +41,7 @@ function Header(){
                 <div className='container'>
                     <span>{hours}: {minutes}: {seconds}</span>
                     <span>{day}, {date} {month} {year}</span>
-                    <a href=''><span>paruluniversity.ac.in</span></a>
+                    <a href='https://paruluniversity.ac.in/' target='_blank'><span>paruluniversity.ac.in</span></a>
                 </div>
             </div>
             <nav className="navbar">
