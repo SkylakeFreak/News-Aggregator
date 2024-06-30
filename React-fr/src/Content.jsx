@@ -47,7 +47,7 @@ Object.entries(data1).map(([key1,value1])=>(
         </div>
         
         <button onClick={()=>{
-          route("/NewsData")
+          route("/NewsData");window.scrollTo(0, 0);
         }} className='bg-gray-500 text-white p-2 rounded-md hover:bg-black'>Request to Upload New post</button>
       </div>
     </div>
