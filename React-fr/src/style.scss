@@ -268,8 +268,7 @@
         border: var(--border);
         margin:var(--margin3);
         padding: 2%;
-        width: 100%;
-        max-width: 90vw;
+        width: 70vw;
         h2{
             font-size: clamp(1rem,2vw,3rem);
             font-weight: 600;
@@ -369,5 +368,13 @@
         .img-container{
             display: none;
         }
+    }
+    .AdminPanel{
+        .modal{
+            .modal-content{
+                width: 90vw;
+            }
+        }
+        
     }
   }
