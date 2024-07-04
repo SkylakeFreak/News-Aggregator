@@ -50,7 +50,6 @@ function Header(){
                 <p>Architecture</p>
                 <p>Design</p>
                 <p>Engineering</p>
-                <p>General</p>
                 <p>Homeopathy</p>
                 <p>Management</p>
                 <p>Nursing</p>
