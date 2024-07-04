@@ -7,12 +7,12 @@ import Url from "../Url";
 
 function Newsdata({ currentemail }) {
   const [Dept, setDept] = useState("Not Selected");
+  const [Owner,setOwner]=useState(currentemail);
   const route = useNavigate();
   const group = Dept;
   // const date = new Date().toLocaleString();
 
   const Approved = false;
-  const Owner = currentemail;
   const Like = 0;
   const Reported = 0;
   const [Title, setTitle] = useState("");
