@@ -77,23 +77,25 @@ const adminApprove = async (req, res) => {
 };
 
 
+
 const adminDeny = async (req, res) => {
   const { id } = req.body;
+  console.log(id);
 
   try {
     const article = await News.findById(id);
     if (!article) {
       return res.status(404).json({ success: false, message: "Article not found" });
     }
-  await article.findByIdAndDelete(id);
-    News.save();
 
-    return res.status(200).json({ success: true, message: "Article denied successfully" });
+    const deletedData = await News.findByIdAndDelete(id);
+    return res.status(200).json({ success: true, deletedData, message: "Article denied successfully" });
   } catch (error) {
     console.error("Error denying article:", error);
     return res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 
 const newsData=async (req, res) => {
   try {

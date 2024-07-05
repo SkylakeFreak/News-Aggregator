@@ -7,12 +7,12 @@ import Url from "../Url";
 
 function Newsdata({ currentemail }) {
   const [Dept, setDept] = useState("Not Selected");
+  const [Owner,setOwner]=useState(currentemail);
   const route = useNavigate();
   const group = Dept;
   // const date = new Date().toLocaleString();
 
   const Approved = false;
-  const Owner = currentemail;
   const Like = 0;
   const Reported = 0;
   const [Title, setTitle] = useState("");
@@ -46,6 +46,7 @@ function Newsdata({ currentemail }) {
       const response = await axios.post(`${Url.newsUrl}/createNews`, formData);
       console.log(response);
       toast.success(`News Request Successfully Sent to ${Dept}`);
+      route('/content')
     } catch (error) {
       console.error(error);
       toast.error("Error submitting news request");
@@ -59,7 +60,7 @@ function Newsdata({ currentemail }) {
         <button onClick={() => route("/content")} className="back-bt">&#129136;</button>
         <h1>You are Writing an Article</h1>
       </div>
-      <form onSubmit={formSubmit} className="news-form">
+      <form onSubmit={formSubmit} className="news-form" >
         <label>
           Title
           <input type="text" required onChange={handleTitleChange} placeholder="Article Your Article Name" name="title" className="title-input" />

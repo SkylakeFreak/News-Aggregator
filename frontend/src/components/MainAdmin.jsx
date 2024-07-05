@@ -3,15 +3,17 @@ import axios from 'axios';
 import './style.scss';
 import Url from '../Url';
 import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function MainAdmin() {
+  const route = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
   const [data, setData] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
 
   const isAdminFunc = async () => {
     const token = localStorage.getItem('token');
-    console.log(token)
+    console.log(token);
     try {
       const response = await axios.post(`${Url.userUrl}/login/admin`, {}, {
         headers: { 'Authorization': `Bearer ${token}` }
@@ -19,11 +21,12 @@ function MainAdmin() {
       console.log(response);
       if (response.status === 200) {
         setIsAdmin(true);
+        route('/admin');
       } else {
         setIsAdmin(false);
       }
     } catch (error) {
-      console.log("Error Message")
+      console.log("Error Message");
       console.error(error);
       setIsAdmin(false);
     }
@@ -39,24 +42,6 @@ function MainAdmin() {
     }
   };
 
-  useEffect(() => {
-    isAdminFunc();
-  }, []);
-
-  useEffect(() => {
-    if (isAdmin) {
-      getData();
-    }
-  },[isAdmin]);
-
-  const handleTileClick = (element) => {
-    setSelectedElement(element);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedElement(null);
-  };
-
   const handleApprove = async () => {
     try {
       await axios.post(`${Url.newsUrl}/admin/approve`, { id: selectedElement._id });
@@ -68,24 +53,44 @@ function MainAdmin() {
       toast.error("Error approving article");
     }
   };
+
   const handleDeny = async (element) => {
-    setSelectedElement(element);
-    if (!selectedElement) {
+    if (!element) {
       console.error('No selected element to deny');
       return;
     }
-  
+
     try {
-      await axios.post(`${Url.newsUrl}/admin/deny`, { id: selectedElement._id });
+      await axios.post(`${Url.newsUrl}/admin/deny`, { id: element._id });
       toast.success("Article Denied");
-      setSelectedElement(null);
+      if (selectedElement && selectedElement._id === element._id) {
+        setSelectedElement(null);
+      }
       getData(); // Refresh the data after denial
     } catch (error) {
+      console.log(element);
       console.error("Error denying article", error);
       toast.error("Error denying article");
     }
   };
-  
+
+  useEffect(() => {
+    isAdminFunc();
+  }, []);
+
+  useEffect(() => {
+    if (isAdmin) {
+      getData();
+    }
+  }, [isAdmin]);
+
+  const handleTileClick = (element) => {
+    setSelectedElement(element);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedElement(null);
+  };
 
   const Tile = ({ element }) => (
     <div className='tile'>
@@ -94,9 +99,7 @@ function MainAdmin() {
         <p>Sender: {element.Owner}</p>
         <span>{element.Date}</span>
       </div>
-      {/* <button className='deny-button' onClick={() => handleDeny(element._id)}>Deny</button> */}
-      <button className='deny' onClick={handleDeny}>Deny</button>
-
+      <button className='deny' onClick={() => handleDeny(element)}>Deny</button>
     </div>
   );
 
@@ -110,14 +113,12 @@ function MainAdmin() {
         <p className='content'>{element.Content}</p>
         <div>
           <button className='approve' onClick={handleApprove}>Approve</button>
-          {/* <button className='deny' onClick={() => handleDeny(element._id)}>Deny</button> */}
-          <button className='deny' onClick={handleDeny}>Deny</button>
-
+          <button className='deny' onClick={() => handleDeny(element)}>Deny</button>
         </div>
       </div>
     </div>
   );
-
+  
   return (
     <>
       <Toaster />
@@ -125,8 +126,8 @@ function MainAdmin() {
         <div className='admin-panel'>
           <h1>Admin Panel</h1>
           <div className='tiles'>
-            {data.map((element, index) => (
-              <Tile key={index} element={element} />
+            {data.map((element) => (
+              <Tile key={element._id} element={element} />
             ))}
           </div>
           {selectedElement && (
