@@ -11,6 +11,7 @@ import MainAdmin from './components/MainAdmin';
 import './components/style.scss';
 import './App.css';
 import {useState } from 'react';
+import paper from "./assets/paper1.png";
 
 
 function App() {
@@ -20,22 +21,21 @@ function App() {
   console.log(currentemail);
 
   return (
-    <>
     <div className='App'>
-    <Header/>
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Front/>}/>
-      <Route path="/signin" element={<Signin setuseauth={setuseauth} setcurrentemail={setcurrentemail} currentuser={currentuser} setcurrentuser={setcurrentuser}/>}/>
-      <Route path="/signup" element={<Signup/>}/>
-      <Route path="/admin" element={<MainAdmin/>}/>
-      <Route path='/content' element={<Content currentemail={currentemail} currentuser={currentuser}/>}/>
-      <Route path='/newsdata' element={<Newsdata  currentemail={currentemail}/>}/>
-    </Routes>
-    </BrowserRouter>
-    <Footer/>
+        <Header/>
+        <BrowserRouter>
+        <Routes>
+        <Route path="/" element={<Front/>}/>
+        <Route path="/signin" element={<Signin setuseauth={setuseauth} setcurrentemail={setcurrentemail} currentuser={currentuser} setcurrentuser={setcurrentuser}/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/admin" element={<MainAdmin/>}/>
+        <Route path='/content' element={<Content currentemail={currentemail} currentuser={currentuser}/>}/>
+        <Route path='/newsdata' element={<Newsdata  currentemail={currentemail}/>}/>
+        </Routes>
+        </BrowserRouter>
+        <Footer/>
+        <div className="paper-texture"><img src={paper}/></div>
     </div>
-    </>
   );
 }
 

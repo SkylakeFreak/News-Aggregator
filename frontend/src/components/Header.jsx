@@ -37,13 +37,9 @@ function Header(){
                 <span>PU TIMES</span>
             </div>
             <div className="timeline">
-                <div className='line'></div>
-                <div className='container'>
                     <span>{hours}: {minutes}: {seconds}</span>
                     <span>{day}, {date} {month} {year}</span>
                     <a href='https://paruluniversity.ac.in/' target='_blank'><span>paruluniversity.ac.in</span></a>
-                </div>
-                <div className='line'></div>
             </div>
             <nav className="navbar">
                 <p>Agriculture</p>
@@ -52,11 +48,7 @@ function Header(){
                 <p>Design</p>
                 <p>Engineering</p>
                 <p>General</p>
-                <p>Homeopathy</p>
-                <p>Management</p>
-                <p>Nursing</p>
-                <p>Pharmacy</p>
-                <p>Placement Cell</p>
+                <p>more...</p>
                 <img src={pfp}/>
             </nav>
         </div>
