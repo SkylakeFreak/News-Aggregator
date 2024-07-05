@@ -7,6 +7,7 @@ const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 const cookieParser = require("cookie-parser"); // Importing cookie-parser to handle cookies
 const cloudinary = require("./config/cloudinary");
 const fileupload = require("express-fileupload");
+require("dotenv").config();
 
 const PORT = process.env.PORT || 4000;
 const app = express();
