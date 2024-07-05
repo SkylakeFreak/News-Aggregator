@@ -43,6 +43,7 @@ function Header(){
                     <span>{day}, {date} {month} {year}</span>
                     <a href='https://paruluniversity.ac.in/' target='_blank'><span>paruluniversity.ac.in</span></a>
                 </div>
+                <div className='line'></div>
             </div>
             <nav className="navbar">
                 <p>Agriculture</p>
