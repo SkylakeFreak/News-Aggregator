@@ -3,28 +3,49 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+function isValidGmail(email) {
+  // Regular expression to validate Gmail addresses
+  const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+  return gmailRegex.test(email);
+}
+
 const register = async (req, res) => {
   const userData = req.body;
   let hashedPassword;
 
   try {
-    if (userData.Password !== userData.ConfirmPassword) {
-      return res.status(401).json({ success: false, message: "Password and Confirm Password do not match" });
-    }
+    if (isValidGmail(userData.Email)) {
+      // if (userData.Password !== userData.ConfirmPassword) {
+      //   return res
+      //     .status(401)
+      //     .json({
+      //       success: false,
+      //       message: "Password and Confirm Password do not match",
+      //     });
+      // }
 
-    const existingUser = await User.findOne({ Email: userData.Email });
-    if (existingUser) {
-      return res.status(400).json({ success: false, message: "User already exists" });
+      const existingUser = await User.findOne({ Email: userData.Email });
+      if (existingUser) {
+        return res
+          .status(400)
+          .json({ success: false, message: "User already exists" });
+      } else {
+        hashedPassword = await bcrypt.hash(userData.Password, 10);
+        userData.Password = hashedPassword;
+        const newUser = new User(userData);
+        await newUser.save();
+        return res
+          .status(200)
+          .json({ success: true, message: "User Registered Successfully" });
+      }
     } else {
-      hashedPassword = await bcrypt.hash(userData.Password, 10);
-      userData.Password = hashedPassword;
-      const newUser = new User(userData);
-      await newUser.save();
-      return res.status(200).json({ success: true, message: "User Registered Successfully" });
+      return res.status(403).json({ success: false, message: "Invalid Email" });
     }
   } catch (error) {
     console.error("Error adding new user:", error);
-    return res.status(500).json({ success: false, message: "Internal Server Error" });
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -32,16 +53,38 @@ const login = async (req, res) => {
   const userData = req.body;
   try {
     const user = await User.findOne({ Email: userData.Email });
-    if (user && await bcrypt.compare(userData.Password, user.Password)) {
-      const token = jwt.sign({ id: user._id, Email: user.Email, Password: user.Password, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1d" });
-      res.cookie("token", token, { httpOnly: true, maxAge: 72 * 60 * 60 * 1000 }); // 3 days
-      return res.status(200).json({ success: true, token: token, message: "User Logged in Successfully" });
+    if (user && (await bcrypt.compare(userData.Password, user.Password))) {
+      const token = jwt.sign(
+        {
+          id: user._id,
+          Email: user.Email,
+          Password: user.Password,
+          role: user.role,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "1d" }
+      );
+      res.cookie("token", token, {
+        httpOnly: true,
+        maxAge: 72 * 60 * 60 * 1000,
+      }); // 3 days
+      return res
+        .status(200)
+        .json({
+          success: true,
+          token: token,
+          message: "User Logged in Successfully",
+        });
     } else {
-      return res.status(400).json({ success: false, message: "Incorrect Email or Password" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Incorrect Email or Password" });
     }
   } catch (error) {
     console.error("Error checking user credentials:", error);
-    return res.status(500).send("Error Checking User Credentials. Please Try Again Later");
+    return res
+      .status(500)
+      .send("Error Checking User Credentials. Please Try Again Later");
   }
 };
 
@@ -52,13 +95,17 @@ const adminRegister = async (req, res) => {
   try {
     hashedPassword = await bcrypt.hash(userData.Password, 10);
     userData.Password = hashedPassword;
-    userData.role = 'admin';
+    userData.role = "admin";
     const newUser = new User(userData);
     await newUser.save();
-    return res.status(200).json({ success: true, message: "Admin Registered Successfully" });
+    return res
+      .status(200)
+      .json({ success: true, message: "Admin Registered Successfully" });
   } catch (error) {
     console.error("Error Registering Admin:", error);
-    return res.status(500).json({ success: false, message: "Internal Server Error" });
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error" });
   }
 };
 
@@ -75,13 +122,15 @@ const adminLogin = async (req, res) => {
 
     const data = await User.find({ Approved: false });
     // res.send(data);
-    return res.status(200).json({ success: true, message: "Admin Logged in Successfully" })
+    return res
+      .status(200)
+      .json({ success: true, message: "Admin Logged in Successfully" });
   } catch (error) {
     console.error("Error during admin login:", error);
-    return res.status(500).json({ success: false, message: "Internal Server Error" });
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error" });
   }
 };
-
-
 
 module.exports = { register, login, adminLogin, adminRegister };

@@ -123,7 +123,7 @@ function CategoryContent() {
             View All News
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="">
           {data.length > 0 ? (
             data.map((newsItem, index) => (
               <div
@@ -138,7 +138,7 @@ function CategoryContent() {
                   <img
                     src={newsItem.imgUrl}
                     alt={newsItem.Title}
-                    className="w-full h-48 object-cover mb-4 rounded-lg"
+                    className="w-full h-96 object-cover mb-4 rounded-lg"
                   />
                 )}
                 <p className="text-gray-800 mb-4">{newsItem.Content}</p>

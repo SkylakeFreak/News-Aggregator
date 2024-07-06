@@ -24,22 +24,24 @@ function Content({ currentuser, currentemail }) {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
+    <div className="flex flex-col h-auto bg-gray-100">
       <div className="p-4">
-        <h1 className="text-3xl font-bold text-center">{currentuser} Current Uploaded Data</h1>
+        {/* <h1 className="text-3xl font-bold text-center">{currentuser} Current Uploaded Data</h1> */}
         <p className="text-xl mt-2 text-center">Welcome {currentemail}</p>
       </div>
-      <div className="flex flex-col items-center justify-center flex-grow">
+      <div className="flex flex-col items-center justify-end flex-grow w-[100]">
+
         <button
           onClick={() => {
-            navigate("/NewsData");
+            navigate("/newsdata");
             window.scrollTo(0, 0);
           }}
           className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-2"
         >
           Request to Upload New Post
         </button>
-        <div className="p-5 max-w-full overflow-y-auto">
+
+        <div className="p-5 max-w-[90%] overflow-y-auto">
           {data.length > 0 ? (
             data.map((newsItem, index) => (
               <div
@@ -53,7 +55,7 @@ function Content({ currentuser, currentemail }) {
                 <img
                   src={newsItem.imgUrl}
                   alt={newsItem.Title}
-                  className="w-full h-64 object-cover mb-4 rounded-lg"
+                  className="w-[100%] h-[28rem] object-cover mb-4 rounded-lg"
                 />
                 <p className="text-gray-800 mb-4">{newsItem.Content}</p>
                 <div className="flex justify-between text-sm">

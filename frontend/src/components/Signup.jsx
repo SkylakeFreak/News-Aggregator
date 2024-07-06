@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -6,13 +6,16 @@ import './style.scss';
 import Url from "../Url";
 
 function Signup() {
-  toast.dismiss();
   let navigate = useNavigate();
   
   const [Email, setEmail] = useState("");
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
+
+  useEffect(() => {
+    toast.dismiss();
+  }, []);
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +42,8 @@ function Signup() {
         setTimeout(() => {
           window.location.reload();
         }, 2000);
+      } else if (response.status === 403) {
+        alert("Invalid Gmail. Try Again");
       } else {
         toast.error("Server error. Please try again.");
       }
